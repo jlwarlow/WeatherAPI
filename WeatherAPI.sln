@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAPI", "WeatherAPI\WeatherAPI.csproj", "{8DDE32D2-3E64-44AB-A137-962D1B9CD0CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSourceAPI", "WeatherSourceAPI\WeatherSourceAPI.csproj", "{19FB0666-7A47-492F-8AEC-109738F1F74D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeatherOrgClient", "OpenWeatherOrgClient\OpenWeatherOrgClient.csproj", "{AE4D294A-1890-41DD-B623-F4ACF07D25B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DDE32D2-3E64-44AB-A137-962D1B9CD0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDE32D2-3E64-44AB-A137-962D1B9CD0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDE32D2-3E64-44AB-A137-962D1B9CD0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDE32D2-3E64-44AB-A137-962D1B9CD0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19FB0666-7A47-492F-8AEC-109738F1F74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19FB0666-7A47-492F-8AEC-109738F1F74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19FB0666-7A47-492F-8AEC-109738F1F74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19FB0666-7A47-492F-8AEC-109738F1F74D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE4D294A-1890-41DD-B623-F4ACF07D25B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4D294A-1890-41DD-B623-F4ACF07D25B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4D294A-1890-41DD-B623-F4ACF07D25B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4D294A-1890-41DD-B623-F4ACF07D25B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5ADE1846-91E7-44F0-9662-AC9764377EE5}
+	EndGlobalSection
+EndGlobal
