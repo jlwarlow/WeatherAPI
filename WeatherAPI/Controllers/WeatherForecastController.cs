@@ -6,15 +6,19 @@ namespace WeatherAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherSourceAPI weatherSourceApi) : ControllerBase
+    public class WeatherForecastController(IConfiguration configuration, ILogger<WeatherForecastController> logger, IWeatherSourceAPI weatherSourceApi) : ControllerBase
     {
+        private const string AppId = "AppId";
+
         private readonly ILogger<WeatherForecastController> _logger = logger;
         private readonly IWeatherSourceAPI _weatherSourceApi = weatherSourceApi;
+        private readonly IConfiguration _configuration = configuration;
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public async Task<Weather> Get()
+        [HttpGet("{city}/{userKey?}", Name = "GetWeatherForecast")]
+        public async Task<Weather> Get(string city, string? userKey = null)
         {
-            var weather = await _weatherSourceApi.GetCurrentWeather("1d2d2ca177f4fb7f763bf3c4b230f27b", "London");
+            var appId = _configuration.GetValue<string>(AppId);
+            var weather = await _weatherSourceApi.GetCurrentWeather(appId!, city);
             return weather;
         }
     }

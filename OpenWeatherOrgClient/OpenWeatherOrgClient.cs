@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using WeatherSourceAPI;
@@ -9,6 +10,7 @@ namespace OpenWeatherOrgClient;
 public class OpenWeatherOrgClient : IWeatherSourceAPI
 {
     const string OpenWeatherOrgURL = "https://api.openweathermap.org/data/2.5/weather";
+    const string OpenWeatherIconURL = "https://openweathermap.org/img/wn/{0}@2x.png";
     const string Units = "metric";
     const string Exclude = "daily,hourly,minutely,alerts";
 
@@ -25,7 +27,7 @@ public class OpenWeatherOrgClient : IWeatherSourceAPI
             {"units", Units},
             {"exclude", Exclude},
             {"appid", apiKey},
-            {"city", city}
+            {"q", city}
         };
 
         var newUrl = new Uri(QueryHelpers.AddQueryString(OpenWeatherOrgURL, param));
@@ -36,10 +38,21 @@ public class OpenWeatherOrgClient : IWeatherSourceAPI
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            var json = JsonSerializer.Deserialize<object>(responseBody);
+            var json = JObject.Parse(responseBody);
+            var temperature = json["main"]["temp"].ToString();
+            var humidity = json["main"]["humidity"].ToString();
+            var windSpeed = json["wind"]["speed"].ToString();
+            var icon = json["weather"][0]["icon"].ToString();
 
+            var weather = new Weather
+            {
+                Temperature = double.Parse(temperature),
+                Humidity = double.Parse(humidity),
+                WindSpeed = double.Parse(windSpeed),
+                Icon = string.Format(OpenWeatherIconURL, icon)
+            };
 
-            return new Weather();
+            return weather;
         }
         catch (HttpRequestException e)
         {
