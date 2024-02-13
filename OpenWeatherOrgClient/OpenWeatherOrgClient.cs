@@ -39,16 +39,16 @@ public class OpenWeatherOrgClient : IWeatherSourceAPI
             var responseBody = await response.Content.ReadAsStringAsync();
 
             var json = JObject.Parse(responseBody);
-            var temperature = json["main"]["temp"].ToString();
-            var humidity = json["main"]["humidity"].ToString();
-            var windSpeed = json["wind"]["speed"].ToString();
-            var icon = json["weather"][0]["icon"].ToString();
+            var temperature = json["main"]?["temp"]?.ToString();
+            var humidity = json["main"]?["humidity"]?.ToString();
+            var windSpeed = json["wind"]?["speed"]?.ToString();
+            var icon = json["weather"]?[0]?["icon"]?.ToString();
 
             var weather = new Weather
             {
-                Temperature = double.Parse(temperature),
-                Humidity = double.Parse(humidity),
-                WindSpeed = double.Parse(windSpeed),
+                Temperature = double.Parse(temperature ?? "0"),
+                Humidity = double.Parse(humidity ?? "0"),
+                WindSpeed = double.Parse(windSpeed ?? "0"),
                 Icon = string.Format(OpenWeatherIconURL, icon)
             };
 
@@ -56,6 +56,7 @@ public class OpenWeatherOrgClient : IWeatherSourceAPI
         }
         catch (HttpRequestException e)
         {
+            Console.WriteLine(e.Message);
             throw;
         }
     }
